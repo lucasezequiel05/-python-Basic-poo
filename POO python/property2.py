@@ -31,8 +31,11 @@ class Persona:
     
 if __name__ == '__main__':
 
-    employer = Persona('DAnte')
-    employer.set_country = 'brasiL'
+    #Input de una cadena y división de la misma para asignar multiples variables.
+    name, country = input('Enter your name-country:\n').split('-')
+    employer = Persona(name)
+    employer.set_country = country
     employer.country
     employer.get_email
+
     
