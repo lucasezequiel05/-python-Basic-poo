@@ -1,3 +1,5 @@
+import random
+
 class Persona:
 
     def __init__(self,name, last_name, age, country):
@@ -7,6 +9,7 @@ class Persona:
         self.country = country
         self.__number = 40 #Solo se accede desde la clase. No desde la instancia
         self._color = 'blue' #Se accede desde la instancia y cualquier subclase
+        self._dni = Dni()
 
     def __view_info(self):
         print(f'{self.name}\n{self.last_name}\n{self.age}\n{self.country}\n')
@@ -14,6 +17,28 @@ class Persona:
     @property
     def get_info(self):
         return self.__view_info()
+
+    @property
+    def get_dni_number(self):
+        return print(f'{self.name} = dni {self._dni.number}')
+
+# Clase Dni es una clase dentro de Persona.
+# Genera una secuencia de números aleatorios, concatenando los enteros a un string mediante el pareo de str()
+# Mediante range genero un ciclo que itera hasta 6 veces para adicionar los números a las cadenas que comenzaran con 30.
+
+class Dni:
+  
+    def dni_create_number(self):
+
+        dni_number = "30"        
+        for n in range(0,6):
+            number = random.randint(0,9)
+            dni_number = dni_number + str(number)
+
+        return dni_number
+
+    def __init__(self):
+        self.number = self.dni_create_number()
 
 class Employer(Persona):
 
@@ -49,3 +74,8 @@ if __name__ == '__main__':
     regina.get_info
 
     print(regina._color)
+
+    david.get_dni_number
+    jessica.get_dni_number
+    sech.get_dni_number
+    regina.get_dni_number
