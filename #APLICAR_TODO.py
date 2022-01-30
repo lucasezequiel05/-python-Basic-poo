@@ -1,15 +1,16 @@
+from curses import wrapper
 import random
 
 #Aplica para mediro el tiempo del programa en segundos mediante time.time()
-import time 
+import time
 
 class Persona:
 
     def __init__(self,name, last_name, age, country):
-        self._name = name
-        self._last_name = last_name
+        self._name = name.lower()
+        self._last_name = last_name.lower()
         self._age = age
-        self._country = country
+        self._country = country.lower()
         self.__number = 40 #Solo se accede desde la clase. No desde la instancia
         self._color = 'blue' #Se accede desde la instancia y cualquier subclase
         self._dni = Dni()
@@ -80,7 +81,7 @@ class List_Persona_for_country:
     def add_persona(self, name, country):
         self._list.append({'name':name, 'country': country})
 
-    #Itera la lista y toma los datos de cada elemento para mostrarlos por pantalla
+        #Itera la lista y toma los datos de cada elemento para mostrarlos por pantalla
     def view_list(self):
         for element in self._list:
             name = element['name']
@@ -88,14 +89,15 @@ class List_Persona_for_country:
             print(f'Nombre = {name} => Country = {country}')
         print('\n')
 
-    #Ordenar una lista de objetos
+    #Ordena la lista de objetos y la almacena en memoria.
     #Muestra la lista ordenada por el campo Country
-    def view_sorted_by_country(self):
+    def sorted_list_by_country(self):
 
         #Sorted(lista, key_function)
         #Recibe el elemento de cada iteración de la lista y un campo clave para comparar
         new_list = sorted(self._list, key= lambda element : element['country'])
-        
+        self._list = new_list
+
         for element in new_list:
             name = element['name']
             country = element['country']
@@ -127,6 +129,33 @@ class List_Persona_for_country:
         
         return element
 
+    def get_persona_by_position(self, position_persona):
+
+        return self._list[position_persona]    
+
+    #Realizar Búsqueda binaria por país
+    def binary_search_by_country(self, value_country):
+        
+        value_country = value_country.lower() #Convierte a minúscula
+        position = -1
+
+        start_point = 0
+        end_point = len(self._list)-1
+        mid_point = (start_point+end_point)//2
+
+        while start_point <= end_point and position == -1:
+            
+            if value_country == self._list[mid_point]['country']:
+                position = mid_point
+            elif value_country < self._list[mid_point]['country']:
+                end_point = mid_point -1
+                mid_point = (start_point + end_point)//2
+            elif value_country > self._list[mid_point]['country']:
+                start_point = mid_point +1
+                mid_point = (start_point + end_point)//2
+        
+        return position
+
 if __name__ == '__main__':
 
     tiempo_inicio = time.time()
@@ -148,6 +177,8 @@ if __name__ == '__main__':
     regina = Others('regina', 'cambridge', 30, 'New Zeland')
     regina.get_info
 
+    oswald = Others('oswald', 'wellington', 31, 'Canada')
+
     print(regina._color)
 
     david.get_dni_number
@@ -167,9 +198,15 @@ if __name__ == '__main__':
     lista_personas.add_persona(sech.get_name,sech.get_country)
     lista_personas.add_persona(regina.get_name,regina.get_country)
     lista_personas.add_persona(anastasia.get_name,anastasia.get_country)
+    lista_personas.add_persona(oswald.get_name,oswald.get_country)
 
-    lista_personas.view_sorted_by_country()
+    lista_personas.sorted_list_by_country()
+
+    elem_position = lista_personas.binary_search_by_country('new ZEland')
+    print(elem_position)
+    print(lista_personas.get_persona_by_position(elem_position))
+
 
     out = lista_personas.remove_persona_for_name('david')
     print(out)
-
+  

@@ -9,6 +9,7 @@ class List_Persona_for_country:
     def add_persona(self, name, country):
         self._list.append({'name':name, 'country': country})
 
+    #Ver el contenido de la lista
     #Itera la lista y toma los datos de cada elemento para mostrarlos por pantalla
     def view_list(self):
         for element in self._list:
@@ -31,6 +32,7 @@ class List_Persona_for_country:
             print(f'Nombre = {name} => Country = {country}')
         print('\n')
 
+    #Mediante BÚSQUEDA LINEAL:
     #Buscar la posición de un nombre
     #Iteracion por indice: for i in range (0,len(lista))
     def _search_index_name(self, value):
@@ -45,7 +47,7 @@ class List_Persona_for_country:
 
         return position    
 
-    #Quitar elemento de la lista
+    #Quitar elemento de la lista y retornarlo.
     def remove_persona_for_name(self,value):
 
         element = None
