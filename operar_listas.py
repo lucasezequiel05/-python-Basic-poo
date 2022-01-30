@@ -5,7 +5,7 @@ class List_Persona_for_country:
     def __init__(self):
         self._list = []
 
-    #Crea un objeto con los parámetros recibidos y los almacena en la lista
+    #Crea un objeto con los parámetros recibidos y los almacena al final de la lista
     def add_persona(self, name, country):
         self._list.append({'name':name, 'country': country})
 
@@ -58,4 +58,4 @@ class List_Persona_for_country:
 
 if __name__ == '__main__':
     
-    
+    pass

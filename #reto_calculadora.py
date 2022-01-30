@@ -17,21 +17,37 @@ class Calculadora:
     def __init__(self):
         pass
 
+    #Decorador: timeis retorna una función wrapper
+    #Agrega la funcionalidad de tomar los tiempos y devolver el resultado como el tiempo demorado.
+    def _timeis(func):
+
+        def wrapper(*args, **kwargs): #Se indica que recibirá parámetros
+            time_start = time.time()
+            result = func(*args, **kwargs) #Recibe los argumentos que se pasaron al llamar la funcion.
+            time_end = time.time()
+            print(f'Result = {result}\n Tiempo de la operación: {time_end-time_start}')
+
+        return wrapper
+
+    @_timeis
     def logarithm(self,n):
         return math.log10(n)
 
+    @_timeis
     def lineal(self,n):
         return n
 
+    @_timeis
     def n_logarithm(self,n):
         return n * math.log10(n)
 
+    @_timeis
     def square(self,n):
         return n**2
 
+    @_timeis
     def exponential(self,n):
         return 2**n
-
 
 if __name__ == "__main__":
 
@@ -45,37 +61,22 @@ if __name__ == "__main__":
     print("Select a operation (indicate the number):\n 1)lineal\n 2)logarithm\n 3)n_logarithm\n 4)square\n 5)exponential\n")
     option = int(input("\n"))
 
-    #El bloque compara la opción correcta, toma los tiempos y muestra resultados.
-    if option == 1:
-        time_start = time.time()
+    #El bloque compara la opción correcta y ejecuta la operación.
+    if option == 1:        
         result = calculadora_math.lineal(number)
-        time_end = time.time()
-        print(f'Result = {result}\n Tiempo de la operación: {time_end-time_start}')        
-
-    elif option == 2:
-        time_start = time.time()
+        
+    elif option == 2:        
         result = calculadora_math.logarithm(number)
-        time_end = time.time()
-        print(f'Result = {result}\n Tiempo de la operación: {time_end-time_start}')        
-    
-    elif option == 3:
-        time_start = time.time()
+        
+    elif option == 3:        
         result = calculadora_math.n_logarithm(number)
-        time_end = time.time()
-        print(f'Result = {result}\n Tiempo de la operación: {time_end-time_start}')        
-    
-    elif option == 4:
-        time_start = time.time()
+        
+    elif option == 4:        
         result = calculadora_math.square(number)
-        time_end = time.time()
-        print(f'Result = {result}\n Tiempo de la operación: {time_end-time_start}')        
-      
+        
     elif option == 5:
-        time_start = time.time()
         result = calculadora_math.exponential(number)
-        time_end = time.time()
-        print(f'Result = {result}\n Tiempo de la operación: {time_end-time_start}')        
-
+        
     else:
         print("Invalid option")
     
