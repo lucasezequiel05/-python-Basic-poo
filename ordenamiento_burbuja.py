@@ -1,0 +1,39 @@
+#BUBBLE SORT: Itera una lista de n elementos por n veces cada elemento.
+
+import random
+
+#Crear una lista con numeros aleatorios con "import random"
+def create_random_list():
+    tamano_lista = int(input("Tamano de la lista:\n "))
+    lista = []
+
+    for i in range(0,tamano_lista):
+        lista.append(random.randint(0,100))    #Inserta al final
+
+    print(f'Lista creada:\n{lista}\n')
+    return lista
+
+def bubble_sort(lista):
+    
+    list_len = len(lista)
+    print(f'len = {list_len}')
+
+    #for - range inicia iterando en 0 pero se detiene al llegar al valor máximo. No saliendo del indice permitido.
+    for i in range(list_len):
+        print(f'i = {i}')
+
+    #Voy a iterar hasta el último índice permitido pero le resto uno para poder comparar la posición j+1 sin salir del límite de la lista.
+    #A su vez resto i para dejar fuera de comparación los últimos elementos ya ordenados. En el primer ciclo i = 0, ya en el segundo es i = 1 y así sucesivamente.
+        for j in range(list_len -1 -i):
+
+            if lista[j] > lista[j+1]:
+                lista[j], lista[j+1] = lista[j+1], lista[j]
+
+    return lista
+
+if __name__ == '__main__':
+
+    lista = create_random_list()
+    print(lista)
+    lista_ordenada = bubble_sort(lista)
+    print(lista_ordenada)
