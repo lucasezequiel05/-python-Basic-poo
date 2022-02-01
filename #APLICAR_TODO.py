@@ -96,7 +96,7 @@ class List_Persona_for_country:
         #Sorted(lista, key_function)
         #Recibe el elemento de cada iteración de la lista y un campo clave para comparar
         new_list = sorted(self._list, key= lambda element : element['country'])
-        self._list = new_list
+        self._list = new_list #Reemplazo lista en memoria
 
         for element in new_list:
             name = element['name']
