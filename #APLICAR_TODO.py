@@ -70,35 +70,40 @@ class Others(User):
     def __init__(self, name, last_name, age, country):
         super().__init__(name, last_name, age, country)
 
-#Clase Para Listar Las Personas
-class List_Persona_for_country:
+#Clase Para listar Las Personas
+class lista_Persona_for_country:
 
     #Se declara una lista dentro de la estructura
     def __init__(self):
-        self._list = []
+        self._lista = []
 
     #Crea un objeto con los parámetros recibidos y los almacena en la lista
     def add_persona(self, name, country):
-        self._list.append({'name':name, 'country': country})
+        self._lista.append({'name':name, 'country': country})
 
-        #Itera la lista y toma los datos de cada elemento para mostrarlos por pantalla
-    def view_list(self):
-        for element in self._list:
+    #Itera la lista y toma los datos de cada elemento para mostrarlos por pantalla
+    def view_lista(self):
+        for element in self._lista:
             name = element['name']
             country = element['country']
             print(f'Nombre = {name} => Country = {country}')
         print('\n')
+    
+    #Vaciar contenido de la lista
+    def clear_lista(self):
+        self._lista.clear()
+        print('-'*5, ' The lista is empty ','-'*5)
 
     #Ordena la lista de objetos y la almacena en memoria.
     #Muestra la lista ordenada por el campo Country
-    def sorted_list_by_country(self):
+    def sorted_lista_by_country(self):
 
         #Sorted(lista, key_function)
         #Recibe el elemento de cada iteración de la lista y un campo clave para comparar
-        new_list = sorted(self._list, key= lambda element : element['country'])
-        self._list = new_list #Reemplazo lista en memoria
+        new_lista = sorted(self._lista, key= lambda element : element['country'])
+        self._lista = new_lista #Reemplazo lista en memoria
 
-        for element in new_list:
+        for element in new_lista:
             name = element['name']
             country = element['country']
             print(f'Nombre = {name} => Country = {country}')
@@ -110,10 +115,10 @@ class List_Persona_for_country:
 
         position = -1
         #Longitud de la lista len( ):
-        for index in range(0, len(self._list)):
+        for index in range(0, len(self._lista)):
 
             #Acceder al elemento y campo de un diccionario
-            if (self._list[index]['name'] == value):
+            if (self._lista[index]['name'] == value):
                 position = index
 
         return position    
@@ -125,13 +130,12 @@ class List_Persona_for_country:
         position = self._search_index_name(value)
         
         if position >= 0:
-            element = self._list.pop(position)
+            element = self._lista.pop(position)
         
         return element
 
     def get_persona_by_position(self, position_persona):
-
-        return self._list[position_persona]    
+        return self._lista[position_persona]    
 
     #Realizar Búsqueda binaria por país
     def binary_search_by_country(self, value_country):
@@ -140,17 +144,17 @@ class List_Persona_for_country:
         position = -1
 
         start_point = 0
-        end_point = len(self._list)-1
+        end_point = len(self._lista)-1
         mid_point = (start_point+end_point)//2
 
         while start_point <= end_point and position == -1:
             
-            if value_country == self._list[mid_point]['country']:
+            if value_country == self._lista[mid_point]['country']:
                 position = mid_point
-            elif value_country < self._list[mid_point]['country']:
+            elif value_country < self._lista[mid_point]['country']:
                 end_point = mid_point -1
                 mid_point = (start_point + end_point)//2
-            elif value_country > self._list[mid_point]['country']:
+            elif value_country > self._lista[mid_point]['country']:
                 start_point = mid_point +1
                 mid_point = (start_point + end_point)//2
         
@@ -189,9 +193,9 @@ if __name__ == '__main__':
     tiempo_fin = time.time()
     print(f'Se demoró {tiempo_fin-tiempo_inicio} segundos.')
 
-    #Listar las personas
+    #listar las personas
 
-    lista_personas = List_Persona_for_country()
+    lista_personas = lista_Persona_for_country()
 
     lista_personas.add_persona(david.get_name,david.get_country)
     lista_personas.add_persona(jessica.get_name,jessica.get_country)
@@ -200,12 +204,11 @@ if __name__ == '__main__':
     lista_personas.add_persona(anastasia.get_name,anastasia.get_country)
     lista_personas.add_persona(oswald.get_name,oswald.get_country)
 
-    lista_personas.sorted_list_by_country()
+    lista_personas.sorted_lista_by_country()
 
     elem_position = lista_personas.binary_search_by_country('new ZEland')
     print(elem_position)
     print(lista_personas.get_persona_by_position(elem_position))
-
 
     out = lista_personas.remove_persona_for_name('david')
     print(out)

@@ -11,28 +11,28 @@ import random
 +Como el ordenamiento se basa en empezar desde el inicio e ir acomodando hacia la izquierda, al momento de encontrar un valor a la izquierda que NO sea mayor, significa que el resto ya esta ordenado. Con esta condición podemos detener el bucle secundario.
 """
 
-def insertion_sort(unordered_list):
+def insertion_sort(unordered_lista):
 
-    for i in range(1, len(unordered_list)): #Bucle principal. Inicia desde la posición 1.
+    for i in range(1, len(unordered_lista)): #Bucle principal. Inicia desde la posición 1.
         
         #Variable de ayuda para realizar una segunda iteración por cada elemento:
         #Almacena la posición del índice i, para ir disminuyendo en -1 e iterar en reversa hasta la posición 0.
         current_position = i
 
         #El loop se detiene al alcanzar la posición cero y cuando los valores a la izquierda son menores al elemento actual que se compara.
-        while current_position > 0 and unordered_list[current_position-1] > unordered_list[current_position]:
+        while current_position > 0 and unordered_lista[current_position-1] > unordered_lista[current_position]:
 
         #Cada que el valor a la izquierda es mayor, realiza un intercambio ayudado por una variable temporal.
-            temp_storage = unordered_list[current_position]
-            unordered_list[current_position] = unordered_list[current_position-1]
-            unordered_list[current_position-1] = temp_storage
+            temp_storage = unordered_lista[current_position]
+            unordered_lista[current_position] = unordered_lista[current_position-1]
+            unordered_lista[current_position-1] = temp_storage
             
             current_position -= 1
 
 #Crear una lista con numeros aleatorios con "import random"
 #Sin repetir valores.
 
-def create_random_list():
+def create_random_lista():
     tamano_lista = int(input("Tamano de la lista:\n "))
     lista = []
 
@@ -46,12 +46,12 @@ def create_random_list():
         if number not in lista:
             lista.append(number)    #Inserta al final
 
-    print(f'Lista creada:\n{lista}\n')
+    print(f'lista creada:\n{lista}\n')
     return lista
 
 if __name__ == '__main__':
     
-    lista = create_random_list()
+    lista = create_random_lista()
 
     insertion_sort(lista)
 

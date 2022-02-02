@@ -46,7 +46,7 @@ def busqueda_binaria(lista_ordenada,valor):
 #---------------------------------------------------------------------------------
 
 #Crear una lista con numeros aleatorios con "import random"
-def create_random_list():
+def create_random_lista():
     tamano_lista = int(input("Tamano de la lista:\n "))
     lista = []
 
@@ -54,27 +54,27 @@ def create_random_list():
         lista.append(random.randint(0,100))    #Inserta al final
         #lista.insert(0,random.randint(0,100))    #Inserta en el indice
 
-    print(f'Lista creada:\n{lista}\n')
+    print(f'lista creada:\n{lista}\n')
     return lista
 
-def create_list():
+def create_lista():
     tamano_lista = int(input("Tamano de la lista:\n "))
     lista = []
 
     for i in range(0,tamano_lista):
         lista.append(i+1)    
     
-    print(f'Lista creada:\n{lista}\n')
+    print(f'lista creada:\n{lista}\n')
     return lista
 
 if __name__ == '__main__':
 
-    lista = create_random_list()
-    #lista = create_list()
+    lista = create_random_lista()
+    #lista = create_lista()
 
     #Retornar una lista ordenada sorted(lista):
     lista_ordenada = sorted(lista)
-    print(f'Lista ordenada:\n{lista_ordenada}\n')
+    print(f'lista ordenada:\n{lista_ordenada}\n')
     
     valor = int(input('Que valor desea encontrar: '))
 

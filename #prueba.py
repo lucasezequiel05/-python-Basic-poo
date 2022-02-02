@@ -1,7 +1,6 @@
-
 import random
 
-def create_random_list():
+def create_random_lista():
     tamano_lista = int(input("Tamano de la lista:\n "))
     lista = []
 
@@ -15,32 +14,28 @@ def create_random_list():
         if number not in lista:
             lista.append(number)    #Inserta al final
 
-    print(f'Lista creada:\n{lista}\n')
+    print(f'lista creada:\n{lista}\n')
     return lista
 
-def create_another_list(list):
+# Crear una lista con valores que no se encuentran en otra lista ya existente
+def create_another_lista(lista):
 
-    tamano_list = len(list) 
-    new_list = []
+    tamano_lista = len(lista) 
+    new_lista = list()
 
-    while tamano_list > 0:
+    for i in range(0, tamano_lista):
 
         new_value = random.randint(0,100)
-        if new_value not in list:
-            new_list.append(new_value)
-            tamano_list -=1
+        if new_value not in lista:
+            new_lista.append(new_value)
+            tamano_lista -=1
 
-    return new_list
+    print(f'lista creada:\n{new_lista}\n')
+    return new_lista
 
-
-def delete_list(lista):
-    del lista
-
-def empty_list(lista):
-    lista = []
-
-#Suponemos dos listas ordenadas.
-def fusion_list(lista_pri, lista_sec):
+#Función para unir el contenido de dos listas en valores ordenados.
+#Se deben recibir ambas listas ordenadas.
+def fusion_lista(lista_pri, lista_sec):
     #Necesito dos iteradores: uno para cada lista, iniciando en 0.
     i = 0
     j = 0
@@ -80,57 +75,18 @@ def fusion_list(lista_pri, lista_sec):
 
     return nueva_lista
 
-# def sort_and_merge(izquierda, derecha):
-
-#     # Iteradores para recorrer las dos sublistas
-#     i = 0
-#     j = 0
-#     # Iterador para la lista principal
-#     k = 0
-#     lista = []
-
-#     while i < len(izquierda) and j < len(derecha):
-#         print(f'****{izquierda[i]}***{derecha[j]}')
-#         if izquierda[i] < derecha[j]:
-#             lista.append(izquierda[i])
-#             i += 1
-#         else:
-#             lista.append(derecha[j])
-#             j += 1
-
-#         k += 1
-
-#     while i < len(izquierda):
-#         lista.append(izquierda[i])
-#         i += 1
-#         k +=1
-
-#     while j < len(derecha):
-#         lista.append(derecha[j])
-#         j += 1
-#         k += 1
-    
-#     return lista
-
 if __name__ == '__main__':
 
-    lista_pri = create_random_list()
-
-    lista_sec = create_another_list(lista_pri)
+    lista_pri = create_random_lista()
+    lista_sec = create_another_lista(lista_pri)
 
     lista_pri.sort()
     lista_sec.sort()
 
-    nueva_lista = fusion_list(lista_pri, lista_sec)
+    print('\n Primer Lista: ', lista_pri,'\n')
+    print('\n Segunda Lista: ', lista_sec,'\n')
 
-    print(nueva_lista)
+    nueva_lista = fusion_lista(lista_pri, lista_sec)
 
-
-    print(nueva_lista)
-
-    #Se puede sustituir un elemento accediendo a su indice, pero
-    #No se puede ingresar un elemento nuevo incluso indicando un indice de espacio disponible.
-    # k = 0
-    # lista = [1,2,3,4,5]
-    # lista[k] = 20
-    # print(lista)
+    print('\n', nueva_lista)
+    

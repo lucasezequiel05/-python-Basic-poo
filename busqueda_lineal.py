@@ -22,7 +22,7 @@ def busqueda_lineal(lista, valor):
 #---------------------------------------------------------------------------------
 
 #Crear una lista con numeros aleatorios con "import random"
-def create_random_list():
+def create_random_lista():
     tamano_lista = int(input("Tamano de la lista:\n "))
     lista = []
 
@@ -30,12 +30,12 @@ def create_random_list():
         lista.append(random.randint(0,100))    #Inserta al final
         #lista.insert(0,random.randint(0,100))    #Inserta en el indice
 
-    print(f'Lista creada:\n{lista}\n')
+    print(f'lista creada:\n{lista}\n')
     return lista
 
 if __name__ == '__main__':
 
-    lista = create_random_list()
+    lista = create_random_lista()
 
 #Métodos para ordenamiento
 
@@ -44,13 +44,13 @@ if __name__ == '__main__':
     #Retornar una lista ordenada sorted(lista):
     lista_ordenada = sorted(lista)
 
-    print(f'Lista ordenada:\n{lista}\n')
+    print(f'lista ordenada:\n{lista}\n')
     
     #Ordenar de mayor a menor con parámetro reverse=True 
     lista.sort(reverse=True)
     lista_mayor_a_menor = sorted(lista, reverse=True)
 
-    print(f'Lista ordenada de Mayor a Menor:\n{lista_mayor_a_menor}\n')
+    print(f'lista ordenada de Mayor a Menor:\n{lista_mayor_a_menor}\n')
 
     valor = int(input('Que valor desea encontrar: '))
 
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     #Eliminar por valor. No retorna.
     # lista.remove(valor)
 
-#Ordenar Lista de Objetos por campos:
+#Ordenar lista de Objetos por campos:
 
 #Sorted puede recibir el parámetro key el cual recibe una función que se ejecuta en cada elemento iterado.
 #Esta función recibe un parámetro y retorna una clave para tener en cuenta en la comparación
