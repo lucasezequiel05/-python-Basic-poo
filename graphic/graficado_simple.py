@@ -7,7 +7,7 @@ from bokeh.plotting import figure, output_file, show
 
 if __name__ == '__main__':
 
-    output_file('graficado_simple.html')    #Se declara el nombre del archivo de salida
+    output_file('graphic.html')    #Se declara el nombre del archivo de salida
     fig = figure()         #Para instanciar figura donde se generarán los gráficos
 
     #Se pregunta al usuario cuando valores graficar x, y:
@@ -26,6 +26,7 @@ if __name__ == '__main__':
 # El método .line() recibe los valores para la figura.
 
     fig.line(x_vals, y_vals, line_width=2)
+    #fig.circle(x_vals, y_vals, size=20, color="navy", alpha=0.5)
 
 # show( ) muestra la figur 
     show(fig)

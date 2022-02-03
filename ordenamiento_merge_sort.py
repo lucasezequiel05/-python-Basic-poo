@@ -43,7 +43,7 @@ def merge_sort(lista):
         i = 0
         j = 0    
 
-        temp_lista = lista() 
+        temp_lista = list() 
 
         #Se recorren ambas listas accediendo a cada valor con el indice e incrementandolo al
         #siguiente valor para seguir comparando.

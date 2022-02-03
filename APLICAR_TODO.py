@@ -1,8 +1,10 @@
-from curses import wrapper
 import random
 
 #Aplica para mediro el tiempo del programa en segundos mediante time.time()
 import time
+
+#Librería para graficar
+from bokeh.plotting import figure, output_file, show
 
 class Persona:
 
@@ -57,8 +59,31 @@ class Dni:
 
 class Employer(Persona):
 
-    def __init__(self, name, last_name, age, country):
+    def __init__(self, name, last_name, age, country, salary):
         super().__init__(name, last_name, age, country)
+        self._salary = int(salary)
+
+    def get_salary(self):
+        return self._salary
+
+#Clase que guarda una lista de enteros corresponientes al salario de la categoria empleados
+#Permite generar un gráfico lineal de la evolución salarial.
+class Employers_salarys_list:
+
+    def __init__(self):
+        self._employers_salary = list()
+
+    def add_salary(self, salary):
+        self._employers_salary.append(salary)
+
+    def show_salarys_evolution(self):
+        x_vals = list(range(len(self._employers_salary)))
+        y_vals = self._employers_salary
+
+        output_file('salarys.html')
+        fig = figure()
+        fig.line(x_vals, y_vals, line_width=2)
+        show(fig)
 
 class User(Persona):
 
@@ -164,7 +189,7 @@ if __name__ == '__main__':
 
     tiempo_inicio = time.time()
 
-    david = Employer('david', 'ottamendi', 33, 'Argentina')
+    david = Employer('david', 'ottamendi', 33, 'Argentina', 30000)
     jessica = User('jessica','cardinal',25,'Uruguay')
 
     #jessica.__view_info()  No accede al metodo privado.
@@ -182,6 +207,8 @@ if __name__ == '__main__':
     regina.get_info
 
     oswald = Others('oswald', 'wellington', 31, 'Canada')
+    martin = Employer('martin','lussto',45,'argentina',35000)
+    lisa = Employer('lisa','guzman',25,'argentina',27000)
 
     print(regina._color)
 
@@ -196,6 +223,7 @@ if __name__ == '__main__':
     #listar las personas
 
     lista_personas = lista_Persona_for_country()
+    lista_salarios = Employers_salarys_list()
 
     lista_personas.add_persona(david.get_name,david.get_country)
     lista_personas.add_persona(jessica.get_name,jessica.get_country)
@@ -203,6 +231,13 @@ if __name__ == '__main__':
     lista_personas.add_persona(regina.get_name,regina.get_country)
     lista_personas.add_persona(anastasia.get_name,anastasia.get_country)
     lista_personas.add_persona(oswald.get_name,oswald.get_country)
+    lista_personas.add_persona(lisa.get_name, lisa.get_country)
+    lista_personas.add_persona(martin.get_name, martin.get_country)
+        
+    lista_salarios.add_salary(david.get_salary())
+    lista_salarios.add_salary(lisa.get_salary())
+    lista_salarios.add_salary(martin.get_salary())
+
 
     lista_personas.sorted_lista_by_country()
 
@@ -213,3 +248,5 @@ if __name__ == '__main__':
     out = lista_personas.remove_persona_for_name('david')
     print(out)
   
+    print(lista_salarios._employers_salary)
+    lista_salarios.show_salarys_evolution()
